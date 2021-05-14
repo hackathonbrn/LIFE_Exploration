@@ -15,3 +15,4 @@ class User(BaseModel):
     reviews_coach: List[Dict[str, Union[int, str]]]
     learners_learner: List[Dict[str, Union[int, str]]]
     learners_coach: List[Dict[str, Union[int, str]]]
+

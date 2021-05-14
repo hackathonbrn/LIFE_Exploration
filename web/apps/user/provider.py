@@ -15,6 +15,4 @@ class Provider(BaseProvider):
             return None
 
     def get_user(self, user_id: int) -> dict:
-        user = self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
-        return user
-
+        return self.exec_by_file('get_user.tmpl', {'id': user_id})[0]

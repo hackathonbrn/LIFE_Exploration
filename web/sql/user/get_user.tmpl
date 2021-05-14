@@ -21,19 +21,13 @@ learners_learner as (
   WHERE id_learner = {id}
 ),
 reviews_coach as (
-  SELECT
-      rc.*
-    , u.username as learner_username
-  FROM reviews_coach rc
-  LEFT JOIN users u ON (u.id = rc.id_learner)
+  SELECT *
+  FROM reviews_coach
   WHERE id_coach = {id}
 ),
 reviews_learner as (
-  SELECT
-      rl.*
-    , u.username as coach_username
-  FROM reviews_learner rl
-  LEFT JOIN users u ON (u.id = rl.id_coach)
+  SELECT *
+  FROM reviews_learner
   WHERE id_learner = {id}
 ),
 games_user as (
