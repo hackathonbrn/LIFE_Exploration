@@ -1,10 +1,11 @@
 from fastapi import Body, Request, Query, APIRouter, Response
 from .processor import Processor
+from .schemas import User
 
 router = APIRouter()
 
 
-@router.get("/cabinet")
+@router.get("/cabinet", response_model=User)
 def cabinet(request: Request):
     steam_id = request.headers.get('session')
     user_info = Processor().cabinet(steam_id)
@@ -13,7 +14,7 @@ def cabinet(request: Request):
     return Response(status_code=404)
 
 
-@router.get("/get_user")
+@router.get("/get_user", response_model=User)
 def get_user(user_id: int = None):
     user_info = None
     if user_id:
