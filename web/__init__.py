@@ -1,11 +1,16 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from apps.test.views import router as test_router
 from apps.user.views import router as user_router
+from apps.steam_auth.views import router as sa_router
+
 
 app = FastAPI(docs_url='/', title='Hackathon API')
 
+app.secret_key = os.urandom(15).hex()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.add_middleware(
     CORSMiddleware,
@@ -16,3 +21,4 @@ app.add_middleware(
 )
 app.include_router(test_router, tags=['Test Routes'], prefix='/test')
 app.include_router(user_router, tags=['User'], prefix='/user')
+app.include_router(sa_router, tags=['Steam Auth'])

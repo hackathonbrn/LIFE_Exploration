@@ -2,6 +2,7 @@ import os
 
 BASE_DIR = os.path.dirname(__file__)
 SQL_ROOT_PATH = os.path.join(BASE_DIR, 'sql')
+HOST = 'http://127.0.0.1:8000'
 
 DATABASE = {
     "dbname": os.environ["POSTGRES_DB"],
