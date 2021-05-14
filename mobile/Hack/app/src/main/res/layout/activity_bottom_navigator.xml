@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="horizontal"
+    android:gravity="bottom"
+    android:id="@+id/bottom_navigator">
+
+    <ImageButton
+        android:id="@+id/profile"
+        android:src="@drawable/ic_baseline_person_24"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="40dp" />
+
+    <ImageButton
+        android:id="@+id/search"
+        android:src="@drawable/ic_baseline_search_24"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+</LinearLayout>
