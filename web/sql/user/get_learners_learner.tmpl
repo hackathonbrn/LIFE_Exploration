@@ -1,9 +1,0 @@
-SELECT
-    l.*
-  , u.username as coach_username
-  , g.name as game_name
-  , g.logo_url as game_logo
-FROM learners l
-LEFT JOIN users u ON (u.id = l.id_coach)
-LEFT JOIN games g ON (l.id_game = g.id)
-WHERE id_learner = {id}

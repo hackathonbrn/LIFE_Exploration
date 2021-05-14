@@ -7,12 +7,14 @@ class Provider(BaseProvider):
     def __init__(self):
         super().__init__('user')
 
-    def get_user(self, steam_id: str) -> dict:
-        user = self.exec_by_file('get_user.tmpl', {'steam_id': steam_id})[0]
-        user['reviews_coach'] = self.exec_by_file('get_reviews_coach.tmpl', user)
-        user['reviews_learner'] = self.exec_by_file('get_reviews_learner.tmpl', user)
-        user['learners_coach'] = self.exec_by_file('get_learners_coach.tmpl', user)
-        user['learners_learner'] = self.exec_by_file('get_learners_learner.tmpl', user)
-        user['games_user'] = self.exec_by_file('get_games_user.tmpl', user)
+    def get_user_id(self, steam_id: str) -> int:
+        user_id = self.exec_by_file('get_user_id.tmpl', {'steam_id': steam_id})
+        try:
+            return user_id[0].get('id')
+        except:
+            return None
+
+    def get_user(self, user_id: int) -> dict:
+        user = self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
         return user
 
