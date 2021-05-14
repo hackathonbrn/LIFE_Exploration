@@ -18,3 +18,4 @@ class Provider(BaseProvider):
         user = self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
         return user
 
+

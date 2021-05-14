@@ -1,0 +1,15 @@
+from base.provider import BaseProvider
+
+
+class Provider(BaseProvider):
+    def __init__(self):
+        super().__init__('steam_auth')
+
+    def add_session(self, token, steam_id):
+        return self.exec_by_file('set_session.tmpl', {'token': token, 'steam_id': steam_id})[0].get('token')
+
+    def get_steam_id(self, token):
+        steam_id = self.exec_by_file('get_steam_id.tmpl', {'token': token})
+        return steam_id[0] if any(steam_id) else steam_id
+
+
