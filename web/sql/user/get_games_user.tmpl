@@ -1,0 +1,7 @@
+SELECT
+    gu.*
+  , g.name as game_name
+  , g.logo_url as game_logo
+FROM games_user gu
+LEFT JOIN games g ON (gu.id_game = g.id)
+WHERE id_user = {id}
