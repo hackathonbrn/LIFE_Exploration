@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from apps.steam_auth.steamsignin import SteamSignIn
+from .steamsignin import SteamSignIn
 from fastapi import Depends, Request, Response
 from config import HOST
 
