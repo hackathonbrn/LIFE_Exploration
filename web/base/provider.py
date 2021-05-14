@@ -2,8 +2,8 @@ import psycopg2
 import os
 from psycopg2.extras import RealDictCursor
 
-from web.config import DATABASE
-from web.config import SQL_ROOT_PATH
+from config import DATABASE
+from config import SQL_ROOT_PATH
 
 
 class BaseProvider:

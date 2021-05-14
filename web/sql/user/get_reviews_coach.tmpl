@@ -1,0 +1,6 @@
+SELECT
+    rc.*
+  , u.username as learner_username
+FROM reviews_coach rc
+LEFT JOIN users u ON (u.id = rc.id_learner)
+WHERE id_coach = {id}
