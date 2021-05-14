@@ -1,0 +1,23 @@
+version: "2.4"
+services:
+    backend:
+        container_name: web
+        build: ./web
+        restart: always
+        depends_on:
+          - postgres
+        ports:
+            - 8000:80
+        volumes:
+            - ./web:/web:rw
+        env_file:
+          - .env
+
+    postgres:
+        container_name: postgres
+        image: postgres:13.1
+        restart: always
+        ports:
+            - 5432:5432
+        env_file:
+          - .env
