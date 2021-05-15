@@ -48,4 +48,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'org.jsoup:jsoup:1.10.2'
     implementation group: 'jp.wasabeef', name: 'picasso-transformations', version: '2.4.0'
+    implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.12.3'
 }
