@@ -13,6 +13,6 @@ class Provider(BaseProvider):
         return steam_id[0] if any(steam_id) else steam_id
 
     def is_token_exists(self, token):
-        return self.exec_by_file('is_token_exists.tmpl', {'token': token})[0].get('count')
+        return bool(self.exec_by_file('is_token_exists.tmpl', {'token': token})[0].get('count'))
 
 
