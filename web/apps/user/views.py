@@ -26,11 +26,10 @@ def get_user(user_id: int = None):
 
 
 @router.post("/change_user", response_model=User)
-def change_user(user_dict: User = Body(..., description='Свойства предмета'),
-                old_user_dict: User = Body(..., description='Старые свойства предмета')):
+def change_user(user_dict: User = Body(..., description='Свойства предмета')):
     user_info = None
-    if user_dict and old_user_dict:
-        user_info = Processor().change_user(user_dict, old_user_dict)
+    if user_dict:
+        user_info = Processor().change_user(user_dict)
     if user_info:
         return user_info
     return Response(status_code=404)

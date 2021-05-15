@@ -1,3 +1,7 @@
+DELETE FROM learners WHERE id_coach = {id} or id_learner = {id};
+DELETE FROM reviews_coach WHERE id_coach = {id};
+DELETE FROM reviews_learner WHERE id_learner = {id};
+DELETE FROM games_user WHERE id_user = {id};
 UPDATE users
 SET
   username = '{username}',
@@ -6,3 +10,4 @@ SET
   , verification = {verification}
   , avatar_url = '{avatar_url}'
 WHERE id = {id}
+RETURNING id;
