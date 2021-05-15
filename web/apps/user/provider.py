@@ -14,7 +14,38 @@ class Provider(BaseProvider):
         return user_id[0].get('id') if user_id else None
 
     def get_user(self, user_id: int) -> dict:
-        return self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
+        user_info = self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
+        if user_info.get('reviews_learner'):
+            user_info['le_pararms'] = {}
+            rating = []
+            sociability = []
+            adequacy = []
+            qualification = []
+            for record in user_info.get('reviews_learner'):
+                rating.append(record.get('rating'))
+                sociability.append(record.get('sociability'))
+                adequacy.append(record.get('adequacy'))
+                qualification.append(record.get('qualification'))
+            user_info['le_pararms']['rating'] = sum(rating)/len(rating)
+            user_info['le_pararms']['sociability'] = sum(sociability) / len(sociability)
+            user_info['le_pararms']['adequacy'] = sum(adequacy) / len(adequacy)
+            user_info['le_pararms']['qualification'] = sum(qualification) / len(qualification)
+        if user_info.get('reviews_coach'):
+            user_info['co_pararms'] = {}
+            rating = []
+            sociability = []
+            adequacy = []
+            qualification = []
+            for record in user_info.get('reviews_coach'):
+                rating.append(record.get('rating'))
+                sociability.append(record.get('sociability'))
+                adequacy.append(record.get('adequacy'))
+                qualification.append(record.get('qualification'))
+            user_info['co_pararms']['rating'] = sum(rating)/len(rating)
+            user_info['co_pararms']['sociability'] = sum(sociability) / len(sociability)
+            user_info['co_pararms']['adequacy'] = sum(adequacy) / len(adequacy)
+            user_info['co_pararms']['qualification'] = sum(qualification) / len(qualification)
+        return user_info
 
     def add_user(self, user_dict: dict) -> int:
         return self.exec_by_file('add_user.tmpl', user_dict)[0].get('id')
@@ -36,7 +67,7 @@ class Provider(BaseProvider):
         if user_dict.dict().get('learners_coach') is not None:
             for review in user_dict.dict().get('learners_coach'):
                 self.exec_by_file('learners.tmpl', review)
-        return user_dict
+        return user_dict.dict()
 
     def get_coach(self, coach_dict: Coach) -> list:
         coach = self.exec_by_file('get_coach.tmpl', coach_dict.dict())
