@@ -19,17 +19,22 @@ class Provider(BaseProvider):
     def add_user(self, user_dict: dict) -> int:
         return self.exec_by_file('add_user.tmpl', user_dict)[0].get('id')
 
-    def change_user(self, user_dict: User, old_user_dict: User) -> bool:
-        self.exec_by_file('change_user.tmpl', user_dict)
-        if isinstance(user_dict, dict) and isinstance(old_user_dict, dict):
-            if old_user_dict.get('games_user') != user_dict.get('games_user'):
-                pass
-            if old_user_dict.get('reviews_learner') != user_dict.get('reviews_learner'):
-                pass
-            if old_user_dict.get('reviews_coach') != user_dict.get('reviews_coach'):
-                pass
-            if old_user_dict.get('learners_learner') != user_dict.get('learners_learner'):
-                pass
-            if old_user_dict.get('learners_coach') != user_dict.get('learners_coach'):
-                pass
-        return self.exec_by_file('change_user.tmpl', user_dict)
+    def change_user(self, user_dict: User) -> dict:
+        if isinstance(user_dict, dict):
+            self.exec_by_file('change_user.tmpl', user_dict)
+            if user_dict.get('games_user') is not None:
+                for game in user_dict.get('games_user'):
+                    self.exec_by_file('user_games.tmpl', game)
+            if user_dict.get('reviews_learner') is not None:
+                for review in user_dict.get('reviews_learner'):
+                    self.exec_by_file('reviews_learner.tmpl', review)
+            if user_dict.get('reviews_coach') is not None:
+                for review in user_dict.get('reviews_coach'):
+                    self.exec_by_file('reviews_coach.tmpl', review)
+            if user_dict.get('learners_learner') is not None:
+                for review in user_dict.get('learners_learner'):
+                    self.exec_by_file('learners.tmpl', review)
+            if user_dict.get('learners_coach') is not None:
+                for review in user_dict.get('learners_coach'):
+                    self.exec_by_file('learners.tmpl', review)
+        return user_dict
