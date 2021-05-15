@@ -42,4 +42,5 @@ def get_coach(coach_dict: Coach = Body(..., description='Свойства пре
 
 @router.post("/set_reviews")
 def set_reviews(reviews_dict: Reviews = Body(..., description='Данные отзывов')):
-    return Processor().set_reviews(reviews_dict)
+    Processor().set_reviews(reviews_dict)
+    return Response(status_code=200)
