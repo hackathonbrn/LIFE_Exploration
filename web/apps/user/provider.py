@@ -55,7 +55,7 @@ class Provider(BaseProvider):
             user_info['co_pararms']['sociability'] = None
             user_info['co_pararms']['coach_level'] = None
             user_info['co_pararms']['qualification'] = None
-    return user_info
+        return user_info
 
     def add_user(self, user_dict: dict) -> int:
         return self.exec_by_file('add_user.tmpl', user_dict)[0].get('id')
