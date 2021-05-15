@@ -10,8 +10,13 @@ class User(BaseModel):
     verification: bool
     avatar_url: str
     steam_id: int
-    games_user: List[Dict[str, Union[int, str]]]
-    reviews_learner: List[Dict[str, Union[int, str]]]
-    reviews_coach: List[Dict[str, Union[int, str]]]
-    learners_learner: List[Dict[str, Union[int, str]]]
-    learners_coach: List[Dict[str, Union[int, str]]]
+    games_user: Union[List[Dict[str, Union[int, str]]], None]
+    reviews_learner: Union[List[Dict[str, Union[int, str]]], None]
+    reviews_coach: Union[List[Dict[str, Union[int, str]]], None]
+    learners_learner: Union[List[Dict[str, Union[int, str]]], None]
+    learners_coach: Union[List[Dict[str, Union[int, str]]], None]
+
+
+class Coach(BaseModel):
+    id: int
+    id_game: Union[int, None]
