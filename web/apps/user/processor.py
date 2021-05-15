@@ -11,6 +11,7 @@ class Processor:
 
     def cabinet(self, steam_id: str) -> Optional[dict]:
         user_id = self.provider.get_user_id(steam_id)
+        print(person_info(steam_id))
         if not user_id:
             person_json = person_info(steam_id)
             user_dict = {

@@ -7,6 +7,6 @@ def person_info(steam_id):
                      f"key={STEAM_WEB_API_KEY}"
                      f"&steamids={steam_id}")
     response = response.json()
-    ls = response["response"]["players"]
+    ls = response["response"]["players"][0]
     return ls
 
