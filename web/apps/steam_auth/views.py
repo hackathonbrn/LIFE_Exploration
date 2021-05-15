@@ -26,6 +26,9 @@ async def process_login(token: str, request: Request, steam_signin: SteamSignIn 
         return Response(status_code=404)
 
     proc = Processor()
+    if proc.is_token_exists(token):
+        return Response(status_code=406)
+
     accepted = proc.add_session(token, steam64id)
     if not accepted:
         return Response(status_code=500)
