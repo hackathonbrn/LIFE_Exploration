@@ -1,6 +1,6 @@
 from fastapi import Body, Request, Query, APIRouter, Response
 from .processor import Processor
-from .schemas import User
+from .schemas import User, Coach
 
 router = APIRouter()
 
@@ -33,3 +33,8 @@ def change_user(user_dict: User = Body(..., description='Свойства пре
     if user_info:
         return user_info
     return Response(status_code=404)
+
+
+@router.post("/get_coach")
+def get_coach(coach_dict: Coach = Body(..., description='Свойства предмета')):
+    return Processor().get_coach(coach_dict)

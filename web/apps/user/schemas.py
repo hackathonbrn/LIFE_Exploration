@@ -15,3 +15,8 @@ class User(BaseModel):
     reviews_coach: Union[List[Dict[str, Union[int, str]]], None]
     learners_learner: Union[List[Dict[str, Union[int, str]]], None]
     learners_coach: Union[List[Dict[str, Union[int, str]]], None]
+
+
+class Coach(BaseModel):
+    id: int
+    id_game: Union[int, None]

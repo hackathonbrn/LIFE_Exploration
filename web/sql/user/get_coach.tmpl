@@ -1,0 +1,16 @@
+SELECT
+    u.id
+  , u.username
+  , u.avatar_url
+  , u.verification
+  , g.id_game
+  , g.rank
+  , g.hours_game
+  , g.number_matches
+  , g.cost_lesson
+  , coalesce(r.rating, 0)::smallint as rating
+FROM users u
+LEFT JOIN games_user g ON (g.id_user = u.id)
+LEFT JOIN reviews_coach r ON (r.id_coach = u.id)
+WHERE u.acc_status = False and g.cost_lesson is not null and u.id != {id}
+ORDER BY g.id_game
