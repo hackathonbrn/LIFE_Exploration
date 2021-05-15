@@ -10,7 +10,8 @@ class Provider(BaseProvider):
 
     def get_steam_id(self, token):
         steam_id = self.exec_by_file('get_steam_id.tmpl', {'token': token})
-        if any(steam_id):
+        print(steam_id)
+        if any(steam_id) or isinstance(steam_id, list):
             steam_id = steam_id[0]
 
         steam_id.update({'steam_id': str(steam_id['steam_id'])})

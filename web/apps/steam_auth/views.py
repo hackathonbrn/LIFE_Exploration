@@ -42,4 +42,8 @@ async def get_steam_id(token: str):
         return Response(status_code=403)
 
     proc = Processor()
+
+    if not proc.is_token_exists(token):
+        return Response(status_code=404)
+
     return proc.get_steam_id(token)
