@@ -17,6 +17,3 @@ def game_dota2(key, id):
     games = response["response"]["games"]
     a = [i for i in games if i.get("appid") == 570]
     return a
-
-print(game_csgo("36F3CB6FC3BF7C1FEBACC6A26C956F4B", "76561198225947128"))
-print(game_dota2("36F3CB6FC3BF7C1FEBACC6A26C956F4B", "76561198225947128"))
