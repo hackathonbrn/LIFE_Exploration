@@ -26,10 +26,11 @@ class Provider(BaseProvider):
                 sociability.append(record.get('sociability'))
                 adequacy.append(record.get('adequacy'))
                 qualification.append(record.get('qualification'))
-            user_info['le_pararms']['rating'] = sum(rating)/len(rating)
-            user_info['le_pararms']['sociability'] = sum(sociability) / len(sociability)
-            user_info['le_pararms']['adequacy'] = sum(adequacy) / len(adequacy)
-            user_info['le_pararms']['qualification'] = sum(qualification) / len(qualification)
+            user_info['co_pararms']['rating'] = sum(rating) / len(rating) if rating else None
+            user_info['co_pararms']['sociability'] = sum(sociability) / len(sociability) if sociability else None
+            user_info['co_pararms']['adequacy'] = sum(adequacy) / len(adequacy) if adequacy else None
+            user_info['co_pararms']['qualification'] = sum(qualification) / len(
+                qualification) if qualification else None
         if user_info.get('reviews_coach'):
             user_info['co_pararms'] = {}
             rating = []
@@ -41,10 +42,10 @@ class Provider(BaseProvider):
                 sociability.append(record.get('sociability'))
                 adequacy.append(record.get('adequacy'))
                 qualification.append(record.get('qualification'))
-            user_info['co_pararms']['rating'] = sum(rating)/len(rating)
-            user_info['co_pararms']['sociability'] = sum(sociability) / len(sociability)
-            user_info['co_pararms']['adequacy'] = sum(adequacy) / len(adequacy)
-            user_info['co_pararms']['qualification'] = sum(qualification) / len(qualification)
+            user_info['co_pararms']['rating'] = sum(rating)/len(rating) if rating else None
+            user_info['co_pararms']['sociability'] = sum(sociability) / len(sociability) if sociability else None
+            user_info['co_pararms']['adequacy'] = sum(adequacy) / len(adequacy) if adequacy else None
+            user_info['co_pararms']['qualification'] = sum(qualification) / len(qualification) if qualification else None
         return user_info
 
     def add_user(self, user_dict: dict) -> int:
