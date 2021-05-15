@@ -1,7 +1,7 @@
 # Тут лежат функции, возвращающие в роут уже подготовленные данные(функции из processor.py)
 from typing import Optional
 from apps.user.provider import Provider
-from .schemas import User, Coach
+from .schemas import User, Coach, Reviews
 from utils.person_info import person_info
 
 
@@ -29,3 +29,6 @@ class Processor:
 
     def get_coach(self, coach_dict: Coach) -> list:
         return self.provider.get_coach(coach_dict)
+
+    def set_reviews(self, reviews_dict: Reviews) -> None:
+        self.provider.set_reviews(reviews_dict)

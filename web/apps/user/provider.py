@@ -2,7 +2,7 @@
 import os
 from typing import Optional
 from base.provider import BaseProvider
-from .schemas import User, Coach
+from .schemas import User, Coach, Reviews
 
 
 class Provider(BaseProvider):
@@ -39,21 +39,21 @@ class Provider(BaseProvider):
         if user_info.get('reviews_coach'):
             rating = []
             sociability = []
-            coach_level = []
+            adequacy = []
             qualification = []
             for record in user_info.get('reviews_coach'):
                 rating.append(record.get('rating'))
                 sociability.append(record.get('sociability'))
-                coach_level.append(record.get('coach_level'))
+                adequacy.append(record.get('adequacy'))
                 qualification.append(record.get('qualification'))
             user_info['co_pararms']['rating'] = sum(rating)/len(rating) if rating else None
             user_info['co_pararms']['sociability'] = sum(sociability) / len(sociability) if sociability else None
-            user_info['co_pararms']['coach_level'] = sum(coach_level) / len(coach_level) if coach_level else None
+            user_info['co_pararms']['adequacy'] = sum(adequacy) / len(adequacy) if adequacy else None
             user_info['co_pararms']['qualification'] = sum(qualification) / len(qualification) if qualification else None
         else:
             user_info['co_pararms']['rating'] = None
             user_info['co_pararms']['sociability'] = None
-            user_info['co_pararms']['coach_level'] = None
+            user_info['co_pararms']['adequacy'] = None
             user_info['co_pararms']['qualification'] = None
         return user_info
 
@@ -86,3 +86,8 @@ class Provider(BaseProvider):
             coach = list(filter(lambda x: x.get('id_game') == id_game, coach))
         coach = sorted(coach, key=lambda x: x.get('rating'), reverse=True)
         return coach
+
+    def set_reviews(self, reviews_dict: Reviews) -> None:
+        status = self.exec_by_file('get_learns.tmpl', reviews_dict.dict())
+        if status:
+            self.exec_by_file('set_reviews.tmpl', reviews_dict.dict())

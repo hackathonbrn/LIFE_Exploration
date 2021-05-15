@@ -22,3 +22,12 @@ class User(BaseModel):
 class Coach(BaseModel):
     id: int
     id_game: Union[int, None]
+
+
+class Reviews(BaseModel):
+    id_coach: int
+    rating: int
+    sociability: int
+    adequacy: int
+    qualification: int
+    id_learner: int
