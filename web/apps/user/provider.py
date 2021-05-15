@@ -15,8 +15,8 @@ class Provider(BaseProvider):
 
     def get_user(self, user_id: int) -> dict:
         user_info = self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
+        user_info['le_pararms'] = {}
         if user_info.get('reviews_learner'):
-            user_info['le_pararms'] = {}
             rating = []
             sociability = []
             adequacy = []
@@ -35,8 +35,8 @@ class Provider(BaseProvider):
             user_info['le_pararms']['sociability'] = None
             user_info['le_pararms']['adequacy'] = None
             user_info['le_pararms']['qualification'] = None
+        user_info['co_pararms'] = {}
         if user_info.get('reviews_coach'):
-            user_info['co_pararms'] = {}
             rating = []
             sociability = []
             coach_level = []

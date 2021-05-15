@@ -8,6 +8,7 @@ from apps.user.views import router as user_router
 from apps.games.views import router as games_router
 from apps.steam_auth.views import router as sa_router
 from apps.requests.views import router as requests_router
+from apps.chat.views import router as chat_router
 
 
 app = FastAPI(docs_url='/', title='Hackathon API')
@@ -24,5 +25,6 @@ app.add_middleware(
 # app.include_router(test_router, tags=['Тестовые роуты'], prefix='/test')
 app.include_router(user_router, tags=['Пользователь'], prefix='/user')
 app.include_router(games_router, tags=['Игры'], prefix='/games')
+app.include_router(chat_router, tags=['Чат'], prefix='/chat')
 app.include_router(sa_router, tags=['Steam Аутентификация'])
 app.include_router(requests_router, tags=['Заявки на тренировку'], prefix='/request')
