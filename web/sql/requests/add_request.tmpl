@@ -1,0 +1,16 @@
+INSERT INTO requests(
+	id_coach
+,	id_learner
+,	cost_lesson
+,	count_lessons
+,	id_game
+)
+VALUES(
+	{id_coach}
+,	{id_learner}
+,	{cost_lesson}
+,	{count_lessons}
+,	{id_game}
+)
+RETURNING
+	id_request;

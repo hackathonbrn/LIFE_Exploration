@@ -1,0 +1,20 @@
+INSERT INTO learners(
+	id_coach
+,	id_learner
+,	count_lessons
+,	left_lessons
+,	cost_lesson
+,	id_game
+)
+SELECT
+	r.id_coach
+,	r.id_learner
+,	r.count_lessons
+,	r.count_lessons
+,	r.cost_lesson
+,	r.id_game
+FROM
+	requests r
+WHERE
+	r.id_coach = {id_coach} AND
+	r.id_learner = {id_learner};

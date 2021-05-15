@@ -1,5 +1,3 @@
-import os
-
 from fastapi import APIRouter
 
 from apps.steam_auth.steamsignin import SteamSignIn
