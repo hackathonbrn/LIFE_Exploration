@@ -11,6 +11,7 @@
     <string name="Teacher">Учитель</string>
     <string name="Student">Ученик</string>
     <string name="Status">Статус</string>
+    <string name="Money">Деньги</string>
     <string-array name="statuses">
         <item>Учитель</item>
         <item>Ученик</item>

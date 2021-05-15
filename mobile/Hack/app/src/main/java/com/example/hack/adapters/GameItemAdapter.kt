@@ -9,12 +9,13 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import com.example.hack.R
 import com.example.hack.entity.Game
+import com.example.hack.entity.GameInfo
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
 class GameItemAdapter(
     context: Context,
-    private val games: ArrayList<Game> = ArrayList()
+    private val games: ArrayList<GameInfo> = ArrayList()
     ) : BaseAdapter() {
 
     private val gInflater: LayoutInflater = LayoutInflater.from(context)
@@ -25,17 +26,17 @@ class GameItemAdapter(
             view = gInflater.inflate(R.layout.game_item_layout, parent, false)
         }
 
-        val game: Game = getItem(position) as Game
+        val game: GameInfo = getItem(position) as GameInfo
 
         val gameIcon = view?.findViewById<ImageView>(R.id.gameIcon)
         Picasso.get()
-            .load(game.url)
+            .load(game.gameLogo)
             .transform(RoundedCornersTransformation(30, 0))
             .resize(200, 200)
             .into(gameIcon)
 
         val gameCheckBox = view!!.findViewById<CheckBox>(R.id.gameCheckBox)
-        gameCheckBox!!.text = game.title
+        gameCheckBox!!.text = game.gameName
 
         return view
     }

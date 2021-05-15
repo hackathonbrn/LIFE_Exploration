@@ -56,7 +56,17 @@
                         android:hint="@string/Status"
                         android:textColor="@color/white"
                         android:textColorHint="#808080"
-                        android:textSize="28sp"
+                        android:textSize="18sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Money"
+                        android:textColor="@color/white"
+                        android:textColorHint="#808080"
+                        android:textSize="18sp"
                         />
 
                     <Spinner
@@ -74,17 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="visible"
                 />
 
-            <ListView
-                android:id="@+id/gameInfoList"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:visibility="gone"
-
-                />
 
         </LinearLayout>
         <include layout="@layout/activity_bottom_navigator" />
