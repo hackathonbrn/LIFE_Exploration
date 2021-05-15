@@ -2,6 +2,7 @@
 from typing import Optional
 from apps.user.provider import Provider
 from .schemas import User
+from utils.person_info import person_info
 
 
 class Processor:
@@ -10,9 +11,15 @@ class Processor:
 
     def cabinet(self, steam_id: str) -> Optional[dict]:
         user_id = self.provider.get_user_id(steam_id)
-        if user_id:
-            return self.provider.get_user(user_id)
-        return None
+        if not user_id:
+            person_json = person_info(steam_id)
+            user_dict = {
+                'steam_id': steam_id,
+                'username': person_json.get('personaname'),
+                'avatar_url': person_json.get('avatar')
+            }
+            user_id = self.provider.add_user(user_dict)
+        return self.provider.get_user(user_id)
 
     def get_user(self, user_id: int) -> dict:
         return self.provider.get_user(user_id)

@@ -16,6 +16,9 @@ class Provider(BaseProvider):
     def get_user(self, user_id: int) -> dict:
         return self.exec_by_file('get_user.tmpl', {'id': user_id})[0]
 
+    def add_user(self, user_dict: dict) -> int:
+        return self.exec_by_file('add_user.tmpl', user_dict)[0].get('id')
+
     def change_user(self, user_dict: User, old_user_dict: User) -> bool:
         self.exec_by_file('change_user.tmpl', user_dict)
         if isinstance(user_dict, dict) and isinstance(old_user_dict, dict):
