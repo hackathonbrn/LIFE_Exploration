@@ -29,8 +29,12 @@ class Provider(BaseProvider):
             user_info['le_pararms']['rating'] = sum(rating) / len(rating) if rating else None
             user_info['le_pararms']['sociability'] = sum(sociability) / len(sociability) if sociability else None
             user_info['le_pararms']['adequacy'] = sum(adequacy) / len(adequacy) if adequacy else None
-            user_info['le_pararms']['qualification'] = sum(qualification) / len(
-                qualification) if qualification else None
+            user_info['le_pararms']['qualification'] = sum(qualification) / len(qualification) if qualification else None
+        else:
+            user_info['le_pararms']['rating'] = None
+            user_info['le_pararms']['sociability'] = None
+            user_info['le_pararms']['adequacy'] = None
+            user_info['le_pararms']['qualification'] = None
         if user_info.get('reviews_coach'):
             user_info['co_pararms'] = {}
             rating = []
@@ -46,7 +50,12 @@ class Provider(BaseProvider):
             user_info['co_pararms']['sociability'] = sum(sociability) / len(sociability) if sociability else None
             user_info['co_pararms']['coach_level'] = sum(coach_level) / len(coach_level) if coach_level else None
             user_info['co_pararms']['qualification'] = sum(qualification) / len(qualification) if qualification else None
-        return user_info
+        else:
+            user_info['co_pararms']['rating'] = None
+            user_info['co_pararms']['sociability'] = None
+            user_info['co_pararms']['coach_level'] = None
+            user_info['co_pararms']['qualification'] = None
+    return user_info
 
     def add_user(self, user_dict: dict) -> int:
         return self.exec_by_file('add_user.tmpl', user_dict)[0].get('id')
