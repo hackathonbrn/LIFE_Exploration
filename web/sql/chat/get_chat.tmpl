@@ -1,0 +1,15 @@
+WITH my_chat AS (
+  SELECT *
+  FROM chat
+  WHERE id_first = {id_first} AND id_second = {id_second}
+UNION ALL
+  SELECT *
+  FROM chat
+  WHERE id_first = {id_second} AND id_second = {id_first}
+)
+SELECT
+    id_first
+  , id_second
+  , message
+FROM my_chat
+ORDER BY datetime

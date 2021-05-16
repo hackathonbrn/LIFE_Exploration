@@ -1,0 +1,50 @@
+WITH learners_coach as (
+  SELECT
+      l.*
+    , u.username as learner_username
+    , g.name as game_name
+    , g.logo_url as game_logo
+  FROM learners l
+  LEFT JOIN users u ON (u.id = l.id_learner)
+  LEFT JOIN games g ON (l.id_game = g.id)
+  WHERE id_coach = {id}
+),
+learners_learner as (
+  SELECT
+      l.*
+    , u.username as coach_username
+    , g.name as game_name
+    , g.logo_url as game_logo
+  FROM learners l
+  LEFT JOIN users u ON (u.id = l.id_coach)
+  LEFT JOIN games g ON (l.id_game = g.id)
+  WHERE id_learner = {id}
+),
+reviews_coach as (
+  SELECT *
+  FROM reviews_coach
+  WHERE id_coach = {id}
+),
+reviews_learner as (
+  SELECT *
+  FROM reviews_learner
+  WHERE id_learner = {id}
+),
+games_user as (
+  SELECT
+      gu.*
+    , g.name as game_name
+    , g.logo_url as game_logo
+  FROM games_user gu
+  LEFT JOIN games g ON (gu.id_game = g.id)
+  WHERE id_user = {id}
+)
+SELECT
+  *
+  , (select array_agg(row_to_json(us)) from games_user us) games_user
+  , (select array_agg(row_to_json(rl)) from reviews_learner rl) reviews_learner
+  , (select array_agg(row_to_json(rc)) from reviews_coach rc) reviews_coach
+  , (select array_agg(row_to_json(ll)) from learners_learner ll) learners_learner
+  , (select array_agg(row_to_json(lc)) from learners_coach lc) learners_coach
+FROM users
+WHERE id = {id}

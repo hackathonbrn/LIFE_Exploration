@@ -1,10 +1,12 @@
-import requests
+import requests as r
+from config import STEAM_WEB_API_KEY
 
 
-def person_info(key, id):
-    response = requests.get(f"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={key}&steamids={id}")
+def person_info(steam_id):
+    response = r.get(f"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?"
+                     f"key={STEAM_WEB_API_KEY}"
+                     f"&steamids={steam_id}")
     response = response.json()
-    ls = response["response"]["players"]
+    ls = response["response"]["players"][0]
     return ls
 
-print(person_info("36F3CB6FC3BF7C1FEBACC6A26C956F4B", "76561198225947128"))

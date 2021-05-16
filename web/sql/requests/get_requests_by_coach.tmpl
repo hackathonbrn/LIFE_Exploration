@@ -1,0 +1,17 @@
+SELECT
+	r.id_request
+,	r.cost_lesson
+,	r.count_lessons
+,	u.id user_id
+,	u.username
+,   u.avatar_url
+,	g.name game_name
+FROM
+	requests r
+LEFT JOIN
+	users u ON u.id = r.id_learner
+LEFT JOIN
+	games g
+		ON g.id = r.id_game
+WHERE
+	r.id_coach = {id_coach};

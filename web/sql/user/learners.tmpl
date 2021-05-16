@@ -1,0 +1,3 @@
+INSERT INTO learners (id_coach, id_learner, count_lessons, left_lessons, cost_lesson, id_game, status_coach, status_learner)
+VALUES {id_coach}, {id_learner}, {count_lessons}, {left_lessons}, {cost_lesson}, {id_game}, {status_coach}, {status_learner}
+RETURNING id_coach;
