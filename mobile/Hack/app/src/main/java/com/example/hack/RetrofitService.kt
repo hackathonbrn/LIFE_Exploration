@@ -1,13 +1,9 @@
 package com.example.hack
 
-import com.example.hack.entity.Game
-import com.example.hack.entity.GameInfo
-import com.example.hack.entity.SteamId
-import com.example.hack.entity.UserProfile
+import com.example.hack.entity.*
+import com.google.gson.JsonObject
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface RetrofitService {
 
@@ -15,7 +11,7 @@ interface RetrofitService {
     fun authLogin(@Query("token") token: String) : Call<Any>
 
     @GET("/auth/get_steam_id")
-    fun getSteamId(@Query("token") token: String) : Call<SteamId>
+    fun getSteamId(@Query("token") token: String) : Call<Any>
 
     @GET("/user/get_user")
     fun getUser(@Query("user_id") userId: String) : Call<UserProfile>
@@ -26,4 +22,15 @@ interface RetrofitService {
     @GET("/user/cabinet")
     fun getUserself(@Query("steam_id") steamId: String) : Call<UserProfile>
 
+    @POST("/user/get_coach")
+    fun getTeachers(@Body params: Map<String, Int>) : Call<List<Teacher>>
+
+    @POST("/user/set_reviews")
+    fun setReview(@Body params: Map<String, Int>) : Call<Any>
+
+    @GET("/request/coach")
+    fun getRequestsToTeacher(@Query("id_coach") coachId: String) : Call<List<RequestToTeacher>>
+
+    @GET("/chat/get_chat")
+    fun getChat(@Query("id_first") idFirst: Int, @Query("id_second") idSecond: Int) : Call<List<Message>>
 }
