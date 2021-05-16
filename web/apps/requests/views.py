@@ -17,9 +17,9 @@ def add_request(req: TrainingRequest):
     req_id = processor.add_request(req.id_coach, req.id_learner, req.cost_lesson, req.count_lessons, req.id_game)
 
     if req_id:
-        return Response(status_code=200)
+        return {'status': 'ok'}
     else:
-        return Response(status_code=500)
+        return {'status': 'failed'}
 
 
 @router.get('/coach')
