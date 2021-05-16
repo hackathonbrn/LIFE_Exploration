@@ -42,6 +42,9 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         memory = getSharedPreferences("hack", Activity.MODE_PRIVATE)
+        val edit = memory.edit()
+        edit.putString("steamId", "76561198083623460")
+        edit.apply()
         val whoAmI = intent.getIntExtra("WhoAmI", 0)
         val steamId = memory.getString("steamId", "")
 

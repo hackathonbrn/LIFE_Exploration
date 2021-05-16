@@ -21,13 +21,13 @@ class RequestToTeacherAdapter (context: Context,
 
         val request: RequestToTeacher = getItem(position) as RequestToTeacher
         val usernameRequest = view?.findViewById<TextView>(R.id.usernameReview)
-        usernameRequest?.text  = request.username
+        usernameRequest?.text  = request.username + " запросил обучение."
 
         val gameReview = view?.findViewById<TextView>(R.id.gameReview)
-        gameReview?.text  = request.game_name
+        gameReview?.text  = "Игра: " + request.game_name
 
         val countReview = view?.findViewById<TextView>(R.id.countReview)
-        countReview?.text  = request.count_lessons.toString() + " занятий"
+        countReview?.text  = "Количество занятий: "  + request.count_lessons.toString()
 
         return view!!
     }
