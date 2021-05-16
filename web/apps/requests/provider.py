@@ -32,10 +32,10 @@ class Provider(BaseProvider):
         answer = self.exec_by_file('get_requests_by_coach.tmpl', {
             'id_coach': id_coach
         })
-        return answer[0] if answer else None
+        return answer if answer else None
 
     def get_requests_by_learner(self, id_learner):
         answer = self.exec_by_file('get_requests_by_learner.tmpl', {
             'id_learner': id_learner
         })
-        return answer[0] if answer else None
+        return answer if answer else None
