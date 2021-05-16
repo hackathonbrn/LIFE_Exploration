@@ -64,12 +64,5 @@ class SearchActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        chat.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
-            intent.putExtra("i", memory.getInt("idUser", 0))
-            intent.putExtra("noi", memory.getInt("idAnotherUser", 0))
-            startActivity(intent)
-        }
-
     }
 }

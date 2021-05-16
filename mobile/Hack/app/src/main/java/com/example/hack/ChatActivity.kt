@@ -36,7 +36,7 @@ class ChatActivity : AppCompatActivity() {
         getChat(logger)
 
         addMessage.setOnClickListener {
-            requestService.addMessage(2, 1, editTextTextMultiLine.text.toString())
+            requestService.addMessage(intent.getIntExtra("i", 1),  intent.getIntExtra("noi", 2), editTextTextMultiLine.text.toString())
                 .enqueue(object : Callback<List<com.example.hack.entity.Message>> {
                     override fun onFailure(
                         call: Call<List<com.example.hack.entity.Message>>,
@@ -86,7 +86,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun getChat(logger: Logger) {
-        requestService.getChat(1, 2)
+        requestService.getChat(intent.getIntExtra("i", 1),  intent.getIntExtra("noi", 2))
             .enqueue(object : Callback<List<com.example.hack.entity.Message>> {
                 override fun onFailure(
                     call: Call<List<com.example.hack.entity.Message>>,
