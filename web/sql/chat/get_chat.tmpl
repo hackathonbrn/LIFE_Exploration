@@ -1,9 +1,15 @@
 WITH my_chat AS (
-  SELECT *
+  SELECT
+      id_first
+    , id_second,
+    , message
   FROM chat
   WHERE id_first = {id_first} and id_second = {id_second}
 UNION ALL
-  SELECT *
+  SELECT
+      id_first
+    , id_second,
+    , message
   FROM chat
   WHERE id_first = {id_second}
   AND id_second = {id_first}
