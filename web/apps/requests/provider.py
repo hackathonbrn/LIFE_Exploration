@@ -22,17 +22,20 @@ class Provider(BaseProvider):
         })
 
     def is_requests_exists(self, id_learner, id_coach):
-        return self.exec_by_file('is_requests_exists.tmpl', {
+        answer = self.exec_by_file('is_requests_exists.tmpl', {
             'id_learner': id_learner,
             'id_coach': id_coach
-        })[0].get('count')
+        })
+        return answer[0].get('count') if answer else None
 
     def get_requests_by_coach(self, id_coach):
-        return self.exec_by_file('get_requests_by_coach.tmpl', {
+        answer = self.exec_by_file('get_requests_by_coach.tmpl', {
             'id_coach': id_coach
-        })[0]
+        })
+        return answer[0] if answer else None
 
     def get_requests_by_learner(self, id_learner):
-        return self.exec_by_file('get_requests_by_learner.tmpl', {
+        answer = self.exec_by_file('get_requests_by_learner.tmpl', {
             'id_learner': id_learner
-        })[0]
+        })
+        return answer[0] if answer else None
