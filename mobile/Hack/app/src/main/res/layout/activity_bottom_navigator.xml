@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="horizontal"
+    android:gravity="bottom"
+    android:id="@+id/bottom_navigator">
+
+    <ImageButton
+        android:id="@+id/profile"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_baseline_person_24" />
+
+    <ImageButton
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_baseline_search_24" />
+
+    <ImageButton
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_baseline_format_list_bulleted_24" />
+
+    <ImageButton
+        android:id="@+id/chat"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_baseline_forward_to_inbox_24" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Hack</string>
+    <string name="SignIn">Войти</string>
+    <string name="SignUp">Зарегистроваться</string>
+    <string name="Back">Назад</string>
+    <string name="About">Приветствуем в LevelUpMultiSkill.<br />
+        Здесь ты всегда можешь накрафтить голды, обучая несмышленных нубов до уровня киберкотлеты.<br />
+        Или сам пройти суровый путь самурая повышая свой скил в той или иной игре.
+    </string>
+    <string name="Nickname">Никнейм</string>
+    <string name="Teacher">Учитель</string>
+    <string name="Student">Ученик</string>
+    <string name="Status">Статус</string>
+    <string name="Money">Деньги</string>
+    <string-array name="statuses">
+        <item>Учитель</item>
+        <item>Ученик</item>
+    </string-array>
+</resources>
