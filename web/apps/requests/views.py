@@ -22,13 +22,13 @@ def add_request(req: TrainingRequest):
         return Response(status_code=500)
 
 
-@router.get('/coach/<id_coach>')
+@router.get('/coach')
 def get_by_coach(id_coach: int):
     processor = Processor()
     return processor.get_requests_by_coach(id_coach)
 
 
-@router.get('/learner/<id_learner>')
+@router.get('/learner')
 def get_by_learner(id_learner: int):
     processor = Processor()
     return processor.get_requests_by_learner(id_learner)
