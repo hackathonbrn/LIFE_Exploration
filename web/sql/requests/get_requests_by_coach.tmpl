@@ -8,11 +8,9 @@ SELECT
 FROM
 	requests r
 LEFT JOIN
-	users u
-		ON u.id = r.id_coach or u.id = r.id_learner
+	users u ON u.id = r.id_learner
 LEFT JOIN
 	games g
 		ON g.id = r.id_game
 WHERE
-	r.id_coach = {id_coach} AND
-	u.acc_status IS FALSE;
+	r.id_coach = {id_coach};
