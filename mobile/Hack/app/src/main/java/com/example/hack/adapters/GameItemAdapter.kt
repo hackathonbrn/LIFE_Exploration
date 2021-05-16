@@ -42,13 +42,13 @@ class GameItemAdapter(
         rank.text = "Ранг в игре: " + game.rank.toString()
 
         val hours = view.findViewById<TextView>(R.id.hours_game)
-        hours.text = "Наиграно часов: " + game.hours_game.toString()
+        hours.text = "Наиграно: " + game.hours_game.toString() + " часов"
 
         val number = view.findViewById<TextView>(R.id.number_matches)
-        number.text = "Сколько матчей сыграно: " + game.number_matches.toString()
+        number.text = "Матчей сыграно: " + game.number_matches.toString()
 
         val cost = view.findViewById<TextView>(R.id.cost_lesson)
-        cost.text = "Цена урока: "+  game.cost_lesson.toString()
+        cost.text = "Цена урока: "+  game.cost_lesson.toString() + " руб."
 
         return view
     }

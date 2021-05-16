@@ -35,6 +35,8 @@ class ProfileActivity : AppCompatActivity() {
     private val logger: Logger = Logger.getLogger("ggg")
     lateinit var memory: SharedPreferences
     var idUser: Int = 0
+    var idGame: Int = 0
+    var costLesson: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +47,14 @@ class ProfileActivity : AppCompatActivity() {
 
 
         Picasso.get()
-            .load("https://img.icons8.com/ios/452/invite.png")
+            .load("https://i.yapx.ru/MSMFS.png")
             .transform(RoundedCornersTransformation(30, 0))
             .resize(200, 200)
             .placeholder(R.color.white)
             .into(ask)
 
         Picasso.get()
-            .load("https://img.icons8.com/windows/452/attendance-mark.png")
+            .load("https://i.yapx.ru/MSMFJ.png")
             .transform(RoundedCornersTransformation(30, 0))
             .resize(200, 200)
             .placeholder(R.color.white)
@@ -79,15 +81,11 @@ class ProfileActivity : AppCompatActivity() {
                 )
                 requestService.setReview(params).enqueue(object : Callback<Any> {
                     override fun onFailure(call: Call<Any>, t: Throwable) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Что-то пошло не так при отправке оценки",
-                            Toast.LENGTH_LONG
-                        ).show()
+
                     }
 
                     override fun onResponse(call: Call<Any>, response: Response<Any>) {
-                        TODO("Not yet implemented")
+                        Toast.makeText(applicationContext, "Ваша оценка отправлена", Toast.LENGTH_LONG).show()
                     }
                 })
 
@@ -96,11 +94,29 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         Picasso.get()
-            .load("https://i.yapx.ru/MSJBD.png")
+            .load("https://i.yapx.ru/MSMFT.png")
             .transform(RoundedCornersTransformation(30, 0))
             .resize(200, 200)
             .placeholder(R.color.white)
             .into(send)
+
+        ask.setOnClickListener {
+            val params = mapOf(Pair("id_coach", memory.getInt("idAnotherUser", 0)),
+                Pair("id_learner", memory.getInt("idUser", 0)),
+                Pair("cost_lesson", 150),
+                Pair("count_lessons", 1),
+                Pair("id_game", idGame)
+            )
+            requestService.addRequest(params).enqueue(object : Callback<Any>{
+                override fun onFailure(call: Call<Any>, t: Throwable) {
+                    logger.info("Что-то пошло не так пока отправлял запрос на обучение")
+                }
+
+                override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                    Toast.makeText(applicationContext, "Запрос на обучение отправлен учителю", Toast.LENGTH_LONG).show()
+                }
+            })
+        }
 
 
         if (whoAmI == 0) {

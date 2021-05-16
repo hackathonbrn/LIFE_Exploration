@@ -27,7 +27,7 @@ class RequestToTeacherAdapter (context: Context,
         gameReview?.text  = request.game_name
 
         val countReview = view?.findViewById<TextView>(R.id.countReview)
-        countReview?.text  = request.count_lessons.toString()
+        countReview?.text  = request.count_lessons.toString() + " занятий"
 
         return view!!
     }

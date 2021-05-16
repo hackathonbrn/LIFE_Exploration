@@ -28,9 +28,15 @@ interface RetrofitService {
     @POST("/user/set_reviews")
     fun setReview(@Body params: Map<String, Int>) : Call<Any>
 
+    @POST("/request/add")
+    fun addRequest(@Body params: Map<String, Int>) : Call<Any>
+
     @GET("/request/coach")
     fun getRequestsToTeacher(@Query("id_coach") coachId: String) : Call<List<RequestToTeacher>>
 
     @GET("/chat/get_chat")
     fun getChat(@Query("id_first") idFirst: Int, @Query("id_second") idSecond: Int) : Call<List<Message>>
+
+    @GET("/chat/add_message")
+    fun addMessage(@Query("id_first") idFirst: Int, @Query("id_second") idSecond: Int, @Query("message") message: String) : Call<List<Message>>
 }
